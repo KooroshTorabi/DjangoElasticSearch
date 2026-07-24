@@ -1,0 +1,58 @@
+{#{% extends "base.html" %}#}
+
+{% block content %}
+    <div class="add-item-container">
+        <h1>Add New Item</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Item</button>
+        </form>
+
+        <p><a href="{% url 'home' %}">&larr; Back to home</a></p>
+    </div>
+
+    <style>
+        .add-item-container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .add-item-container h1 {
+            margin-bottom: 20px;
+        }
+
+        .add-item-container form p {
+            margin-bottom: 15px;
+        }
+
+        .add-item-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .add-item-container input[type="text"],
+        .add-item-container textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .add-item-container button {
+            padding: 10px 20px;
+            background-color: #2c7a7b;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-item-container button:hover {
+            background-color: #285e61;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elasticsearch Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results-list {
+            list-style: none;
+            padding: 0;
+        }
+        .result-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .result-item h3 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        .result-item p {
+            margin: 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Elasticsearch Search</h1>
+    <a href="add-item"><button >Add item </button> </a> <br/><p><hr></p>
+
+    <form method="GET" action="" class="search-box">
+        <input type="text" name="search_query" value="{{ query }}" placeholder="Search items..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <h2>Results for "{{ query }}"</h2>
+        <ul class="results-list">
+            {% for item in results %}
+                <li class="result-item">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif query %}
+        <p>No results found for "<strong>{{ query }}</strong>".</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
